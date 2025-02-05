@@ -1,4 +1,4 @@
-package subdomain
+package care
 
 import (
 	"encoding/json"
@@ -6,18 +6,18 @@ import (
 	"log"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/ozonmp/omp-bot/internal/app/path"
+	"github.com/vas-atc/go-bot-vet/internal/app/path"
 )
 
 type CallbackListData struct {
 	Offset int `json:"offset"`
 }
 
-func (c *DemoSubdomainCommander) CallbackList(callback *tgbotapi.CallbackQuery, callbackPath path.CallbackPath) {
+func (c *VeterinaryCareCommander) CallbackList(callback *tgbotapi.CallbackQuery, callbackPath path.CallbackPath) {
 	parsedData := CallbackListData{}
 	err := json.Unmarshal([]byte(callbackPath.CallbackData), &parsedData)
 	if err != nil {
-		log.Printf("DemoSubdomainCommander.CallbackList: "+
+		log.Printf("VeterinaryCareCommander.CallbackList: "+
 			"error reading json data for type CallbackListData from "+
 			"input string %v - %v", callbackPath.CallbackData, err)
 		return
@@ -28,6 +28,6 @@ func (c *DemoSubdomainCommander) CallbackList(callback *tgbotapi.CallbackQuery, 
 	)
 	_, err = c.bot.Send(msg)
 	if err != nil {
-		log.Printf("DemoSubdomainCommander.CallbackList: error sending reply message to chat - %v", err)
+		log.Printf("VeterinaryCareCommander.CallbackList: error sending reply message to chat - %v", err)
 	}
 }

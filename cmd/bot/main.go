@@ -6,13 +6,13 @@ import (
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
 	"github.com/joho/godotenv"
-	routerPkg "github.com/ozonmp/omp-bot/internal/app/router"
+	routerPkg "github.com/vas-atc/go-bot-vet/internal/app/router"
 )
 
 func main() {
 	_ = godotenv.Load()
 
-	token, found := os.LookupEnv("TOKEN")
+	token, found := os.LookupEnv("TELEGRAM_APITOKEN")
 	if !found {
 		log.Panic("environment variable TOKEN not found in .env")
 	}

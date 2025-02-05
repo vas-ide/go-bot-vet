@@ -5,8 +5,8 @@ import (
 	"runtime/debug"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/ozonmp/omp-bot/internal/app/commands/demo"
-	"github.com/ozonmp/omp-bot/internal/app/path"
+	"github.com/vas-atc/go-bot-vet/internal/app/commands/veterinary"
+	"github.com/vas-atc/go-bot-vet/internal/app/path"
 )
 
 type Commander interface {
@@ -18,8 +18,8 @@ type Router struct {
 	// bot
 	bot *tgbotapi.BotAPI
 
-	// demoCommander
-	demoCommander Commander
+	// veterinaryCommander
+	veterinaryCommander Commander
 	// user
 	// access
 	// buy
@@ -53,8 +53,8 @@ func NewRouter(
 	return &Router{
 		// bot
 		bot: bot,
-		// demoCommander
-		demoCommander: demo.NewDemoCommander(bot),
+		// veterinaryCommander
+		veterinaryCommander: veterinary.NewVeterinaryCommander(bot),
 		// user
 		// access
 		// buy
@@ -106,8 +106,8 @@ func (c *Router) handleCallback(callback *tgbotapi.CallbackQuery) {
 	}
 
 	switch callbackPath.Domain {
-	case "demo":
-		c.demoCommander.HandleCallback(callback, callbackPath)
+	case "veterinary":
+		c.veterinaryCommander.HandleCallback(callback, callbackPath)
 	case "user":
 		break
 	case "access":
@@ -177,8 +177,8 @@ func (c *Router) handleMessage(msg *tgbotapi.Message) {
 	}
 
 	switch commandPath.Domain {
-	case "demo":
-		c.demoCommander.HandleCommand(msg, commandPath)
+	case "veterinary":
+		c.veterinaryCommander.HandleCommand(msg, commandPath)
 	case "user":
 		break
 	case "access":
@@ -235,7 +235,7 @@ func (c *Router) handleMessage(msg *tgbotapi.Message) {
 }
 
 func (c *Router) showCommandFormat(inputMessage *tgbotapi.Message) {
-	outputMsg := tgbotapi.NewMessage(inputMessage.Chat.ID, "Command format: /{command}__{domain}__{subdomain}")
+	outputMsg := tgbotapi.NewMessage(inputMessage.Chat.ID, "Command format: /{command}__{domain}__{care}")
 
 	_, err := c.bot.Send(outputMsg)
 	if err != nil {

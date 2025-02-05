@@ -1,17 +1,17 @@
-package subdomain
+package care
 
 import (
 	"encoding/json"
 	"log"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/ozonmp/omp-bot/internal/app/path"
+	"github.com/vas-atc/go-bot-vet/internal/app/path"
 )
 
-func (c *DemoSubdomainCommander) List(inputMessage *tgbotapi.Message) {
+func (c *VeterinaryCareCommander) List(inputMessage *tgbotapi.Message) {
 	outputMsgText := "Here all the products: \n\n"
 
-	products := c.subdomainService.List()
+	products := c.careService.List()
 	for _, p := range products {
 		outputMsgText += p.Title
 		outputMsgText += "\n"
@@ -24,8 +24,8 @@ func (c *DemoSubdomainCommander) List(inputMessage *tgbotapi.Message) {
 	})
 
 	callbackPath := path.CallbackPath{
-		Domain:       "demo",
-		Subdomain:    "subdomain",
+		Domain:       "veterinary",
+		Care:         "care",
 		CallbackName: "list",
 		CallbackData: string(serializedData),
 	}
@@ -38,6 +38,6 @@ func (c *DemoSubdomainCommander) List(inputMessage *tgbotapi.Message) {
 
 	_, err := c.bot.Send(msg)
 	if err != nil {
-		log.Printf("DemoSubdomainCommander.List: error sending reply message to chat - %v", err)
+		log.Printf("VeterinaryCareCommander.List: error sending reply message to chat - %v", err)
 	}
 }

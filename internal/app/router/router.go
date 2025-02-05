@@ -4,9 +4,9 @@ import (
 	"log"
 	"runtime/debug"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/vas-atc/go-bot-vet/internal/app/commands/veterinary"
-	"github.com/vas-atc/go-bot-vet/internal/app/path"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/vas-ide/go-bot-vet/internal/app/commands/veterinary"
+	"github.com/vas-ide/go-bot-vet/internal/app/path"
 )
 
 type Commander interface {

@@ -3,9 +3,9 @@ package care
 import (
 	"log"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/vas-atc/go-bot-vet/internal/app/path"
-	"github.com/vas-atc/go-bot-vet/internal/service/veterinary/care"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/vas-ide/go-bot-vet/internal/app/path"
+	"github.com/vas-ide/go-bot-vet/internal/service/veterinary/care"
 )
 
 type VeterinaryCareCommander struct {

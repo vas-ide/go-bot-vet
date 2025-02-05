@@ -4,9 +4,10 @@ import (
 	"log"
 	"os"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/joho/godotenv"
-	routerPkg "github.com/vas-atc/go-bot-vet/internal/app/router"
+	routerPkg "github.com/vas-ide/go-bot-vet/internal/app/router"
+
 )
 
 func main() {
@@ -31,10 +32,12 @@ func main() {
 		Timeout: 60,
 	}
 
-	updates, err := bot.GetUpdatesChan(u)
+	updates := bot.GetUpdatesChan(u)
 	if err != nil {
 		log.Panic(err)
 	}
+
+	
 
 	routerHandler := routerPkg.NewRouter(bot)
 

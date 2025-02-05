@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 	"log"
 
-	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api"
-	"github.com/vas-atc/go-bot-vet/internal/app/path"
+	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/vas-ide/go-bot-vet/internal/app/path"
 )
 
 func (c *VeterinaryCareCommander) List(inputMessage *tgbotapi.Message) {
